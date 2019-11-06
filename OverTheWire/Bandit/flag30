@@ -1,0 +1,16 @@
+git clone the repo
+
+cat README.md
+
+no password is updated, git log did not show any commit on the master branch
+
+we check out other branch of the repo by:
+git branch -a
+4 other branches are shown:
+we can check out each branch by:
+git checkout
+
+on branch dev:
+git log and git show revealed the password:
+
+5b90576bedb2cc04c86a9e924ce42faf

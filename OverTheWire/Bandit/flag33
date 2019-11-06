@@ -1,0 +1,7 @@
+break out of a UPPERCASE SHELL
+most normal commands are converted into UPPERCASE -> nothing works
+
+$0 invoke a normal shell
+cat /etc/bandit_pass/bandit33
+
+c9c3199ddf4121b10cf581a98d51caee

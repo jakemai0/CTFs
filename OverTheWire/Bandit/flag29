@@ -1,0 +1,16 @@
+git clone the repo
+
+cat readme.md
+
+username is bandit29
+but password has been covered
+
+we use git log to the the changes
+
+there are 3 past commits
+
+take the most recent commit id then git show it:
+git show 073c27c130e6ee407e12faad1dd3848a110c4f95
+password will be revealed:
+
+bbc96594b4e001778eee9975372716b2

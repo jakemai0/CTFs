@@ -1,0 +1,11 @@
+after seeing whats going on in cron.d/
+cd to var/spool/bandit24/
+
+make a bash script
+
+#!/bin/bash
+
+cat /etc/bandit_pass/bandit24 > /tmp/justinak/openthis.txt
+
+openthis.txt should now have the password for bandit24
+UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ

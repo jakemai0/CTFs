@@ -1,0 +1,15 @@
+nmap --script ssl-cert -p 31000-32000 localhost
+openssl s_client -connect localhost:31790
+
+make new sshkey.private file in tmp/newfolder
+
+ssh -i sshkey.private bandit17@localhost
+
+change sshkey.private permission
+
+chmod 600 sshkey.private
+ssh -i sshkey.private bandit17@localhost
+
+xLYVMN9WE5zQ5vHacb0sZEVqbrp7nBTn
+
+

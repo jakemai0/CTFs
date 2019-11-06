@@ -1,0 +1,4 @@
+log in with known private key
+ssh -i sshkey.private bandit14@localhost
+
+4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e

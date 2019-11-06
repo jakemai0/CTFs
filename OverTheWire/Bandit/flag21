@@ -1,0 +1,10 @@
+open 2 shells and ssh both to bandit20
+nc -lp 9999
+open a port and make it listening
+type in the password for round20
+GbKksEFF4yrVs6il55v6gwY5aVje5f0j
+
+on the other shell
+./suconnect 9999
+
+gE269g2h3mw3pwgrj0Ha9Uoqen1c9DGr
