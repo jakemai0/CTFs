@@ -1,0 +1,9 @@
+Seems like no more information leek, have a look at the robots.txt (for websites to communicate
+with crawlers), we see:
+User-agent: *
+Disallow: /s3cr3t/
+
+redirect to /s3cr3t/
+we see an users.txt file, password for the next level is in there
+
+natas4:Z9tkRkWmpt9Qr7XrR5jWRkgOU901swEZ

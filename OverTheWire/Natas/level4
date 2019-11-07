@@ -1,0 +1,11 @@
+Learned how to use BurpSuite to intercept HTTP requests in order to solve this level.
+
+The server only accepts requests coming from natas5 => we have to spoof referer in the http
+header
+
+Fire up BurpSuite, intercept the http request when hitting Refresh Page.
+
+In the Intercept tab, modify the referer to http://natas5.natas.labs.overthewire.org/
+then forward the request.
+
+Access granted. The password for natas5 is iX6IOfmpN7AYOQGPwtn3fXpbaJVJcHfq
