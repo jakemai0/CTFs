@@ -1,0 +1,9 @@
+Access denied. You are not logged in.
+
+Tricking the server to think that I am logged in without having to log in.
+
+Inspect the page, go to Application Tab, Cookies, there is a cookie named loggedin with a
+value of 0, change this to 1 and refresh. We have the accesss.
+
+
+The password for natas6 is aGoY4q2Dc6MgDq4oL4YtoKtyAg9PeHa1

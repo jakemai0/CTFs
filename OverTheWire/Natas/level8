@@ -1,0 +1,12 @@
+same with level6, but the secret key has been modified by a php function
+return bin2hex(strrev(base64_encode($secret)));
+
+argument is $encodedSecret = "3d3d516343746d4d6d6c315669563362";
+
+launch a php shell by: php -a
+
+and reverse the function with:
+echo base64_decode(strrev(hex2bin('3d3d516343746d4d6d6c315669563362'))); 
+oubWYf2kBq -> secret key
+
+The password for natas9 is W0mMhUcRRnG8dcghE4qvk3JA9lGt8nDl

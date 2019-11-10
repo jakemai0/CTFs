@@ -1,0 +1,9 @@
+We gotta enter a "secret input" in order to get the flag for the next level.
+Viewing the sourcecode, there is a : include "includes/secret.inc";
+
+modify the url to go view the secret.inc, we can see the secret variable:
+$secret = "FOEIUWGHFEEUHOFUOIU";
+
+enter the secret to the input box, flag retrieved!
+
+Access granted. The password for natas7 is 7z3hEENjQtflzgnT29q7wAvMNfZdh0i9

@@ -1,0 +1,10 @@
+Similar to level9, another code injection challenge, however, '/' and '&' characters have been
+filtered out.
+
+examining the source code, it uses grep to search for the word in the dictionary.txt, grep
+command can be used to search in multiple files.
+
+assume that the flag contains letter x => x /etc/natas_webpass/natas11
+it will search for the letter 'x' in the dictionary.txt and the natas11 file
+
+flag retrieved: /etc/natas_webpass/natas11: U82q5TCMMQ9xuFoI3dYX61s7OZD9JKoK

