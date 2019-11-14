@@ -1,0 +1,13 @@
+Similar to challenge 9 and 10.
+Find words containing "input" search box, however more special chars
+have been filtered out.
+
+if(preg_match('/[;|&`\'"]/',$key)) {
+        print "Input contains an illegal character!";
+}
+
+We gotta use $() cho inject command execution to leak out the password
+again, refer to level16.py
+
+flag retrieved:
+8Ps3H0GWbn5rd9S7GmAdgQNdkhPkq9cw

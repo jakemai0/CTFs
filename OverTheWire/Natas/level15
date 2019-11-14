@@ -1,0 +1,6 @@
+Another SQL challenge, checking existence of an username. (Blind SQL injection)
+When we try natas16 => output this user exists.
+We need to leak out the password.
+Refer to level15.py
+
+flag is: WaIHEacj63wnNIBROHeqi3p9t0m5nhmh

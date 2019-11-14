@@ -1,0 +1,10 @@
+Similar to the last level, however the sourcecode now have a check function for valid image
+files. We just need to trick it by adding the magic bytes of an image file to the php code
+snippet. 
+
+GIF87a (magic byte for GIF)
+
+run file runthis.php -> output gif file
+
+upload to the webserver, use burp to intercept and change the file extension.
+flag retrieved: Lg96M10TdfaPyVBkJdjymbllQ5L6qdl1
