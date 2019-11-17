@@ -1,0 +1,15 @@
+So we need to log in with admin account to retrieve the credentials for the next level
+From the given source code, we know that we need to change $_SESSION["admin"] == 1, however we can't seem to be able to do that
+anywhere from the source code.
+
+Let's check out the cookies. There is a cookie name PHPSESSID with a value seems to be an integer.
+When we delete that cookie, and try to log in again, it creates a new value: another int.
+
+I wonder if that has anything to do with the maxid in the source code.
+
+$maxid = 640 //640 should be enough for everyone => admin session might be in one of those between 1 and 640
+Let's write a script to bruteforce this: refer to level18.py
+
+we found the admin session with PHPSESSID 119
+
+flag retrieved: Password: 4IwIrekcuZlA9OsjOkoUtwU6lhokCPYs

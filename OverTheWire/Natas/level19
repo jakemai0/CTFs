@@ -1,0 +1,33 @@
+So the same as level18, but no more sourcecode, only hint is "This page uses mostly the same code as the previous level, but session IDs are no longer sequential..."
+PHPSESSID is generated "randomly", but the last few characters are identical, here are samples of 10 PHPSESSIDs when tried with admin as username
+
+3232382 d61646d696e
+3434322 d61646d696e
+3633372 d61646d696e
+3330362 d61646d696e
+3630372 d61646d696e
+38302   d61646d696e
+3334342 d61646d696e
+362     d61646d696e
+3335322 d61646d696e
+3332342 d61646d696e
+
+when username is something like: helllooooooooooo
+PHPSESSID is going to be something like: 3336342d68656c6c6f6f6f6f6f6f6f6f6f6f6f6f
+seems like some sort of special encoding????
+
+when username is left blank, PHPSESSID is gonna be something like: 3531372d, random int ends with 2d at the end => google says this is some sort of
+data matrix encoding
+
+Turned out I was way off, it actually hex encoded, 2d is hex encoded for '-'
+61646d696e is 'admin' encoded in hex
+
+So maybe thing is still the same, admin session is still from 1-640, but the PHPSESSID is just encoded in hex
+Refer to level19.py
+
+Eventually we got it,
+after hours of trying with just 1-640 followed by '-', it turns out we have to
+include 'admin' as well, like for example '123-admin', not just '123-'
+Admin PHPSESSID is 3238312d61646d696e, encoded from '281-admin'
+
+flag retrieved: eofm3Wsshxc5bwtVnEuGIlr7ivb9KABF

