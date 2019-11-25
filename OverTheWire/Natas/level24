@@ -1,0 +1,17 @@
+same as the previous level, a password submission form
+
+if(array_key_exists("passwd",$_REQUEST)){
+        if(!strcmp($_REQUEST["passwd"],"<censored>")){
+            echo "<br>The credentials for the next level are:<br>";
+
+strcmp() compares 1 string to another string
+
+well obviously we don't know the password, so we need to find another way
+to get strcmp() function to return 0
+
+I played around with it and got it working :/
+passwd[]
+
+flag retrieved: GHF6X7YwACaYYssHVY05cFq83hRktl4c
+
+code: level24.py

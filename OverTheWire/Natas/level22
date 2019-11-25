@@ -1,0 +1,39 @@
+Page is blank, we can only view the sourcecode:
+
+<?
+session_start();
+if(array_key_exists("revelio", $_GET)) {
+    // only admins can reveal the password
+    if(!($_SESSION and array_key_exists("admin", $_SESSION) and $_SESSION["admin"] == 1)) {
+    header("Location: /");
+    }
+}
+?>
+
+<?
+    if(array_key_exists("revelio", $_GET)) {
+    print "You are an admin. The credentials for the next level are:<br>";
+    print "<pre>Username: natas23\n";
+    print "Password: <censored></pre>";
+    }
+?>
+
+
+
+seems like 'revelio' has to be there?
+interesting line: if(!($_SESSION and array_key_exists("admin", $_SESSION) and $_SESSION["admin"] == 1))
+if NOT
+
+Attempt: inject '?revelio' in the url -> nothing shows up in the response Page
+
+---------------Burp way---------------
+if we use Burp and inject '?revelio' in the url, burp will intercept and capture the
+original request and return the output
+
+
+---------------Python-----------------
+we need to turn off redirect:
+allow_redirects=False
+code: level22.py 
+
+flag retrieved: D0vlad33nQF0Hz2EP255TP5wSW9ZsRSE

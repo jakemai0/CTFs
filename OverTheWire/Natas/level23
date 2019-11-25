@@ -1,0 +1,27 @@
+we have a password submission form
+
+Source code:
+if(strstr($_REQUEST["passwd"],"iloveyou") && ($_REQUEST["passwd"] > 10 )){
+            echo "<br>The credentials for the next level are:<br>";
+
+strstr function in php finds the first occurance of a substring in a string 
+so iloveyou must be in the password and password must be > 10 (why does it compare a string to an int????)
+
+after doing some googling, I found this:
+String conversion to numbers
+
+When a string is evaluated in a numeric context, the resulting value and type are determined as follows.
+
+The string will be evaluated as a float if it contains any of the characters '.', 'e', or 'E'. Otherwise, it will be evaluated as an integer.
+
+The value is given by the initial portion of the string.
+If the string starts with valid numeric data, this will be the value used.
+Otherwise, the value will be 0 (zero).
+Valid numeric data is an optional sign, followed by one or more digits (optionally containing a decimal point),
+followed by an optional exponent. The exponent is an 'e' or 'E' followed by one or more digits.
+
+I threw in 12iloveyousomuch, the server spits out the flag.
+12iloveyousomuch contains substring iloveyou, and it's evaluated to 12, which > 10
+flag retrieved: OsRmXFguozKpTZZ5X14zNO43379LZveg
+
+trying to be extra: level23.py
