@@ -1,0 +1,29 @@
+Again, we need to get the print_credentials() function to spit out
+the flag for the next level by getting $_SESSION["admin"] == 1
+
+There is a hint: Note: this website is colocated with http://natas21-experimenter.natas.labs.overthewire.org
+Not much on the other site, we can change the alignment, font size and colour
+of the "Hello world!" text to be printed on the screen.
+
+Turning on the debug mode on the natas21-experimenter, we can have a better idea
+of how the submission works.
+
+**************The easy way*************
+Use Burp to intercept and modify the request:
+we know that we need a key-value pair of admin and 1
+When submitting a form:
+
+align=center&fontsize=100%25&bgcolor=yellow&submit=Update
+
+Slide the key-value pair in: 
+align=center&fontsize=100%25&bgcolor=yellow&submit=Update&admin=1
+copy the PHPSESSID
+
+Head to the main site, refresh, intercept, paste the PHPSESSID in 
+
+flag retrieved: chG9fbe1Tq2eWVMgjYYD1MsfIvN461kJ
+
+
+*************The python way**************
+
+Pretty simple as well, refer to level21.py
