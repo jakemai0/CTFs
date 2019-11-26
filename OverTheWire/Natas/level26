@@ -1,0 +1,9 @@
+This challenge is about PHP object serialization and deserialisation vulnerability.
+This one was so hard, I have never encountered this before.
+
+Here we have 2 cookies: PHPSESSID and drawing
+drawing is encoded in b64
+
+code: level26.py; level26.php
+
+flag retrieved: 55TBjpPZUUJgVP5b3BnbG6ON9uDPVzCJ
