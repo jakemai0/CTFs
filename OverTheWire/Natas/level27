@@ -1,0 +1,21 @@
+We have a username and password login form.
+if we enter a new user with a password => create a  new user
+enter username as natas28 and password => wrong credentials for natas28 => we need to find this
+password
+
+DB is resetted every 5 mins
+
+/*
+   CREATE TABLE `users` (
+  `username` varchar(64) DEFAULT NULL,
+  `password` varchar(64) DEFAULT NULL
+
+   );
+*/
+
+okay so the trick here is the varchar(64), when we enter something > than 64,
+the behavior of mysql will be: grabbing the data within the size and truncate the rest
+
+code: level27.py
+
+flag retreived: JWwR438wkgTsNKBbcJoowyysdM82YjeF
