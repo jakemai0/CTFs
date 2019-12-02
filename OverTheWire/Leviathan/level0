@@ -1,0 +1,8 @@
+ssh leviathan0@leviathan.labs.overthewire.org
+leviathan0
+
+there's a hidden backup folder, with an html file inside.
+cat and grep 'leviathan1', we got the flag for the next level
+
+the password for leviathan1 is:
+rioGegei8m
