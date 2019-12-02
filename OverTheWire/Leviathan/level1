@@ -1,0 +1,10 @@
+we have a binary "check"
+when we run it, it asks for the password, and then verifies it.
+strings check: nothing much
+strace: doesn't show a lot
+ltrace: we can see that the strcmp function is used to compare
+the entered password against "sex"
+
+=> password is sex
+we are now user leviathan2, cd to /etc/leviathan_pass and cat leviathan2
+we got: ougahZi8Ta
