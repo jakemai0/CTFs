@@ -1,0 +1,20 @@
+so we gotta execute the binary with a 4 digits number,
+seems like a brute force one.
+I wrote a Python script but then realised how easy it was to do it
+in shell script intead.
+Python script:
+#!/usr/local/bin/python3
+import os
+n = 0
+while n <= 9999:
+    os.system("~/leviathan6 '%04d%n'")
+	print("%04d%n")
+    n+=1
+
+Shell script:
+for i in {0000..9999}; do echo $i; ~/leviathan6 $i; done
+
+the script stops at 7123 > secret passcode
+now we cat /etc/leviathan_pass/*
+
+flag retrieved: ahy7MaeBo9

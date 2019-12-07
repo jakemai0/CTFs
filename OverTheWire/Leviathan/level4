@@ -1,0 +1,8 @@
+we have a hidden .trash folder, with a binary called "bin" inside
+ltrace on it, seems like what it does is printing out password for the next level in binaries
+
+we could easily find an online website to convert it, or:
+make a python script:
+code: levi4.py
+
+flag retrieved: Tith4cokei

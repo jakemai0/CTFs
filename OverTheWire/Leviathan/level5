@@ -1,0 +1,16 @@
+we have a binary call "leviathan5"
+when executed: outputs > "Cannot find /tmp/file.log"
+
+Leshgo and create file.log then
+echo "Chitty Chitty Bang Bang" > /tmp/file.log
+
+execute leviathan5, it outputs "Chitty Chitty Bang Bang"
+and deletes this file.log right afterwards.
+
+Create a sym link that links the password for the next level to /tmp/file.log
+
+ln -s /etc/leviathan_pass/leviathan6 /tmp/file.log
+
+execute binary: ./leviathan5
+
+flag retrieved: UgaoFee4li

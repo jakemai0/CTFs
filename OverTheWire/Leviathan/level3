@@ -1,0 +1,5 @@
+we have a binary called level3, gotta enter a password for it to verify.
+ltrace it then we'd see: strcmp("koko\n", "snlprintf\n")
+enter "snlprintf" as the password then we'd have a shell
+cat /etc/leviathan_pass/leviathan4
+flag retrieved: vuH0coox6m
