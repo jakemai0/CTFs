@@ -1,9 +1,0 @@
-entry level to Krypton
-
-ssh krypton1@krypton.labs.overthewire.org -p 2222
-password:
-
-S1JZUFRPTklTR1JFQVQ= (base64 encoded string)
-decode to get password:
-
-flag retrieved: KRYPTONISGREEAT
