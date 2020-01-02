@@ -1,0 +1,24 @@
+Looking at the source code:
+We have i = 1, and a buffer[64]
+What we need to do, is to modify the value of i from 1 to 500
+the program will then spawn a shell.
+
+hint is the address of i: 
+i = 1 (0xffffd6e0)
+
+the function snprintf is used to copy the input from agrv[1] to the buffer
+so we won't be able to overflow it easily.
+
+But this is surely some sort of injection to modify variable value from the
+stack.
+
+CYBR271 actually had an example on this: format string vuln.
+
+Let's try with ./narnia5 %x%x%x: (%x prints out data on the stack)
+Change i's value from 1 -> 500. No way...let me give you a hint!
+buffer : [f7fc50003030303530333033] (24)
+i = 1 (0xffffd6e0)
+
+We're getting somewhere.
+
+
