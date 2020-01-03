@@ -1,2 +1,2 @@
---Basic Web App Security CTF done by me
---Tools: Chrome, Python3 (scripts writing), sqlmap, BurpSuite
+Basic Web App Security
+Tools: Chrome, Python3 (scripts writing), sqlmap, BurpSuite
