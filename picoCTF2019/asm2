@@ -1,0 +1,70 @@
+find the result of asm2(0x7, 0x18)
+
+asm2:
+    <+0>:   push   ebp
+    <+1>:   mov    ebp,esp
+    <+3>:   sub    esp,0x10
+
+    <+6>:   mov    eax,DWORD PTR [ebp+0xc]
+    <+9>:   mov    DWORD PTR [ebp-0x4],eax
+
+    <+12>:  mov    eax,DWORD PTR [ebp+0x8]
+    <+15>:  mov    DWORD PTR [ebp-0x8],eax
+
+    <+18>:  jmp    0x50c <asm2+31>
+
+    <+20>:  add    DWORD PTR [ebp-0x4],0x1
+    <+24>:  add    DWORD PTR [ebp-0x8],0xcc
+
+    <+31>:  cmp    DWORD PTR [ebp-0x8],0x3937
+    <+38>:  jle    0x501 <asm2+20>
+
+    <+40>:  mov    eax,DWORD PTR [ebp-0x4]
+
+    <+43>:  leave
+    <+44>:  ret
+
+Alright, so the first 3 lines are function prologue, just loading ebp
+and esp.
+
+The Stack:
+[....][....][....][....][ebp][eip][arg1][arg2]
+
+so asm2+6 says: load[ebp+0xc] to eax. (0xc = 12 = 4 bytes). So we load
+eax with the second argument.
+asm2+9 says: now move eax to [ebp-0x4], so now arg2 is loaded as a local
+var
+[....][....][....][arg2][ebp][eip][arg1][arg2]
+
+same goes with asm2+12 and asm2+15, continue to load arg1 as a local var
+[....][....][arg1][arg2][ebp][eip][arg1][arg2]
+
+asm2+18: now we jump to asm2+31
+
+asm2+31 and asm2+38 basically is a loop: if 0x3937 >= [ebp-0x8] aka arg1
+then go to asm2+20
+
+asm2+20 and asm2+24 are the operations inside this loop: arg2+=0x1 and
+arg1+=0xcc
+
+when the loop finishes, asm2+40: now load arg2 as eax
+asm2+43 and 44: return
+
+C code for the above asm function:
+
+#include <stdio.h>
+int flag(int arg1, int arg2){
+    while (arg1 <= 0x3937){
+        arg2 += 0x1;
+        arg1 += 0xcc;
+    }
+    printf("flag: %x", arg2);
+    return arg2;
+}
+
+int main(){
+    flag(0x7, 0x18);
+    return 0;
+}
+
+result/flag is: 0x60
