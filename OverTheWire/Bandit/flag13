@@ -1,1 +1,13 @@
+data.txt is a hexdump of the flag that has been heavily compressed.
+
+mkdir /tmp/jakembandit12 && cp data.txt /tmp/jakembandit12 && cd /tmp/jakembandit12
+reverse hexdump data.txt
+cat data.txt | xxd -r > reversedata
+check the file with 'file'
+mv to change the file extension
+decompress with gzip; bzip2; tar -xvf
+----had to decompress this like almost 10 times----
+
+until we got a ascii text file:
+
 8ZjyCRiBWFYkneahHwxCv3wb2a1ORpYL

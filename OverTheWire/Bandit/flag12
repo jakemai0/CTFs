@@ -1,1 +1,10 @@
+flag i encrypted with rot13
+Gur cnffjbeq vf 5Gr8L4qetPEsPk8htqjhRK8XSP6x2RHh
+
+Fire up python3:
+
+import codecs
+s='Gur cnffjbeq vf 5Gr8L4qetPEsPk8htqjhRK8XSP6x2RHh'
+codecs.decode(s, "rot13")
+
 5Te8Y4drgCRfCx8ugdwuEX8KFC6k2EUu

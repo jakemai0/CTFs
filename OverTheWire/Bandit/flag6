@@ -1,1 +1,16 @@
+Password for the next level is stored in the ONLY human readable file:
+
+cd inhere; ls -al
+there are about 19 subfolders.
+ls -aR 
+there are 9 files in each sub folder
+6 binaries and 3 normal files
+
+let's just dump everything out
+
+cd ..
+for i in *; do cd "$i" && cat ./-file2 && echo '*****************' && cat spaces\ file2 && echo '********************' && cat .file2 && echo '****************' && cd ..; done > /tmp/dump.txt
+
+skimming thru this huge text dump there's a file with only 1 text line and a huge white space
+
 DXjZPULLxYr17uwoI01bNLQbtFemEgo7

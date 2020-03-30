@@ -1,1 +1,9 @@
+flag is stored somewhere ON THE SERVER
+file owner is bandit7
+group owner is bandit6
+size 33bytes
+
+find / -user bandit7 -group bandit6 -size 33c 2>/dev/null
+2>/dev/null to surpress stderr
+
 HKBPTKQnIay4Fw76bEy8PVxKEDQRKTzs

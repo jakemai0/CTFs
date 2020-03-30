@@ -1,1 +1,5 @@
+flag is the only non duplicated line
+
+sort data.txt | uniq -c
+
 UsvVyFSfZZWbi6wgC7dAFyFuR6jQQUhR

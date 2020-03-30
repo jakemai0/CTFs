@@ -1,1 +1,6 @@
+flag is stored in a binary text file, beginning with serveral '=' characters
+
+vim data.txt
+/===
+
 truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLk
