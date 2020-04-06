@@ -1,0 +1,6 @@
+I hate this challenge, spent like 2 hours on it, I had to seek for hint :(
+
+unzip the archive
+there's a .secret folder with a bunch of sub folders inside,
+remove all the empty folders, and arrange the folders based on the number (file names inside them)
+then base64 -d the code
