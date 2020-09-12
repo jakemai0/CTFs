@@ -1,0 +1,10 @@
+fpt unexploitable
+smb on port 445 is vulnerable
+metasploit shows a samba exploit for smb 3.0.20
+fire up msfconsole
+search for the exploit
+set RHOST LHOST LPORT
+run
+
+user.txt: 69454a937d94f5f0225ea00acd2e84c5
+root.txt: 92caac3be140ef409e45721348a4e9df
