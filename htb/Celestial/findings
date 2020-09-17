@@ -82,8 +82,17 @@ user pwned!
 
 -----------------------------------------------------------------------------------------
 
+Getting root:
+Run linpeas.sh
+Potential attack vectors: old kernel / nodejs service.js cronjob run as root
+So originally I thought there was a cronjob running service.js every 30 mins as root.
+But when checking the cronjob log, service.js actually on ran as user.
+It was script.py at /home/sun being executed as root every 5 mins.
+Grab a simple python reverse shell to call back to our local machine.
+Since I have w permission for script.py
+Download the shell.py to local machine, transfer this over to sun@sun
+cat shell.py > script.py
 
-
-
-
-
+Set up another listener on local machine, wait for 5 mins.
+Shell popped!!!
+root.txt located at /root
