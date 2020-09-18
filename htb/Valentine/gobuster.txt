@@ -1,0 +1,8 @@
+/.htaccess (Status: 403)
+/.htpasswd (Status: 403)
+/cgi-bin/ (Status: 403)
+/decode (Status: 200)
+/dev (Status: 301)
+/encode (Status: 200)
+/index (Status: 200)
+/server-status (Status: 403)

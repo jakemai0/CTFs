@@ -1,0 +1,6 @@
+From initial nmap scan,
+port 80 <- check the website
+22 ssh
+443 <- https => site has SSL/TLS implemented
+
+Checked out the version of TLS
