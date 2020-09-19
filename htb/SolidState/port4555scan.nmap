@@ -1,0 +1,9 @@
+# Nmap 7.80 scan initiated Sat Sep 19 01:10:32 2020 as: nmap -sC -sV -p4555 -oA ./port4555scan 10.10.10.51
+Nmap scan report for 10.10.10.51
+Host is up (0.036s latency).
+
+PORT     STATE SERVICE     VERSION
+4555/tcp open  james-admin JAMES Remote Admin 2.3.2
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sat Sep 19 01:10:43 2020 -- 1 IP address (1 host up) scanned in 11.59 seconds
