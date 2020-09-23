@@ -1,0 +1,30 @@
+Marked as an easy box, leshgo
+nmap only shows port 80 open
+Checking out the websites, not much around
+
+-> found /dev through gobuster
+-> there is a php file that will give us a shell
+cd /home/arrexel
+user pwned!
+
+------------------------------------------------------
+
+Create a python reverse shell to get a better shell, run linpeas script.
+-> there is  (scriptmanager : scriptmanager) NOPASSWD: ALL
+sudo -u scriptmanager /bin/bash
+
+Escalated to scriptmanager user
+scriptmanager has access to /scripts while www-data does not
+Poking around, test.py writes a text to test.txt
+This seems like it's being run periodically
+-> very likely to be cronjob by root since test.txt is owned by root.
+
+f = open("test.txt", "w")
+f.write("testing123!")
+f.close()
+
+Since this will run by root:
+echo "f = open('test.txt', 'w'); f.write(open('/root/root.txt', 'r').read())" >> test.py
+
+After a wee bit, /root/root.txt will be written to test.txt
+root pwned!
