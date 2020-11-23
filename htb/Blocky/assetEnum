@@ -1,0 +1,39 @@
+Time: Mon Nov 23 19:15:02 2020
+
+Time: Mon Nov 23 19:15:02 2020
+
+Time: Mon Nov 23 19:15:03 2020
+
+301   309B   http://10.10.10.37:80/wiki    -> REDIRECTS TO: http://10.10.10.37/wiki/
+301   315B   http://10.10.10.37:80/wp-content    -> REDIRECTS TO: http://10.10.10.37/wp-content/
+Time: Mon Nov 23 19:15:03 2020
+
+Time: Mon Nov 23 19:15:04 2020
+
+Time: Mon Nov 23 19:15:04 2020
+
+Time: Mon Nov 23 19:15:05 2020
+
+301   312B   http://10.10.10.37:80/plugins    -> REDIRECTS TO: http://10.10.10.37/plugins/
+Time: Mon Nov 23 19:15:05 2020
+
+301   316B   http://10.10.10.37:80/wp-includes    -> REDIRECTS TO: http://10.10.10.37/wp-includes/
+Time: Mon Nov 23 19:15:06 2020
+
+301   315B   http://10.10.10.37:80/javascript    -> REDIRECTS TO: http://10.10.10.37/javascript/
+Time: Mon Nov 23 19:15:06 2020
+
+Time: Mon Nov 23 19:15:25 2020
+
+Time: Mon Nov 23 19:15:25 2020
+
+301   313B   http://10.10.10.37:80/wp-admin    -> REDIRECTS TO: http://10.10.10.37/wp-admin/
+Time: Mon Nov 23 19:15:38 2020
+
+Time: Mon Nov 23 19:15:38 2020
+
+301   315B   http://10.10.10.37:80/phpmyadmin    -> REDIRECTS TO: http://10.10.10.37/phpmyadmin/
+Time: Mon Nov 23 19:20:12 2020
+
+Time: Mon Nov 23 19:20:12 2020
+

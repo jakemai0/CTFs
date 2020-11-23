@@ -1,0 +1,22 @@
+FTP has vulnerability
+21/tcp    open   ftp       ProFTPD 1.3.5a
+
+25565/tcp: looks like a minecraft server
+
+
+potential creds retrieved from one of the plugins:
+root
+8YsqfCTnvxAUeduzjNSXe22
+CONFIRMED to be creds for phpadmin database
+
+was able to change the password for the user notch to access the wp_login page
+
+turns out the ssh password is 8YsqfCTnvxAUeduzjNSXe22
+
+ls -lah shows: .sudo_as_admin_successful
+
+sudo -l
+sudo -i
+
+root pwned
+
