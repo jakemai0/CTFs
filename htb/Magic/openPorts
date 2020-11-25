@@ -1,0 +1,55 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2020-11-25 23:14 NZDT
+NSE: Loaded 153 scripts for scanning.
+NSE: Script Pre-scanning.
+Initiating NSE at 23:14
+Completed NSE at 23:14, 0.00s elapsed
+Initiating NSE at 23:14
+Completed NSE at 23:14, 0.00s elapsed
+Initiating NSE at 23:14
+Completed NSE at 23:14, 0.00s elapsed
+Initiating Ping Scan at 23:14
+Scanning 10.10.10.185 [2 ports]
+Completed Ping Scan at 23:14, 0.04s elapsed (1 total hosts)
+Initiating Parallel DNS resolution of 1 host. at 23:14
+Completed Parallel DNS resolution of 1 host. at 23:14, 0.00s elapsed
+Initiating Connect Scan at 23:14
+Scanning 10.10.10.185 [2 ports]
+Discovered open port 80/tcp on 10.10.10.185
+Discovered open port 22/tcp on 10.10.10.185
+Completed Connect Scan at 23:14, 0.04s elapsed (2 total ports)
+Initiating Service scan at 23:14
+Scanning 2 services on 10.10.10.185
+Completed Service scan at 23:14, 6.10s elapsed (2 services on 1 host)
+NSE: Script scanning 10.10.10.185.
+Initiating NSE at 23:14
+Completed NSE at 23:14, 1.25s elapsed
+Initiating NSE at 23:14
+Completed NSE at 23:14, 0.14s elapsed
+Initiating NSE at 23:14
+Completed NSE at 23:14, 0.00s elapsed
+Nmap scan report for 10.10.10.185
+Host is up (0.035s latency).
+
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 06:d4:89:bf:51:f7:fc:0c:f9:08:5e:97:63:64:8d:ca (RSA)
+|   256 11:a6:92:98:ce:35:40:c7:29:09:4f:6c:2d:74:aa:66 (ECDSA)
+|_  256 71:05:99:1f:a8:1b:14:d6:03:85:53:f8:78:8e:cb:88 (ED25519)
+80/tcp open  http    Apache httpd 2.4.29 ((Ubuntu))
+| http-methods: 
+|_  Supported Methods: GET HEAD POST OPTIONS
+|_http-server-header: Apache/2.4.29 (Ubuntu)
+|_http-title: Magic Portfolio
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+NSE: Script Post-scanning.
+Initiating NSE at 23:14
+Completed NSE at 23:14, 0.00s elapsed
+Initiating NSE at 23:14
+Completed NSE at 23:14, 0.00s elapsed
+Initiating NSE at 23:14
+Completed NSE at 23:14, 0.00s elapsed
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 7.92 seconds

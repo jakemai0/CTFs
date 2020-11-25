@@ -1,0 +1,15 @@
+Time: Thu Nov 26 00:40:53 2020
+
+Time: Thu Nov 26 00:40:53 2020
+
+301   313B   http://10.10.10.185:80/images    -> REDIRECTS TO: http://10.10.10.185/images/
+Time: Thu Nov 26 00:40:53 2020
+
+Time: Thu Nov 26 00:40:53 2020
+
+Time: Thu Nov 26 00:43:53 2020
+
+301   313B   http://10.10.10.185:80/assets    -> REDIRECTS TO: http://10.10.10.185/assets/
+Time: Thu Nov 26 00:43:53 2020
+
+403   277B   http://10.10.10.185:80/server-status
