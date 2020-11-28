@@ -1,0 +1,7 @@
+<!--?xml version="1.0" ?-->
+<!DOCTYPE replace [<!ENTITY var SYSTEM 'file:///etc/passwd'>]>
+ <test>
+  <Author>Jake</Author>
+  <Subject>Subject</Subject>
+  <Content>&var;</Content>
+ </test>
