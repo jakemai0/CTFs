@@ -1,4 +1,0 @@
-/images (Status: 301)
-/css (Status: 301)
-/classes (Status: 301)
-/server-status (Status: 403)
